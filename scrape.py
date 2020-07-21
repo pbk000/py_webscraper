@@ -9,9 +9,12 @@ title = sys.argv[-1]
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
-print(f'"url"; {url}'
-      f'"tag": {tag}'
-      f'"title": {title}')
+print(
+    f"""    
+    URL: {url}
+    TAG/ELEMENT: {tag}
+    CSV: {title}.csv
+    """)
 
 tag_text_list = []
 
@@ -22,7 +25,7 @@ for element in soup.find_all(tag):
     i += 1
 
 
-print(f'"total {tag} tags collected: {len(tag_text_list)}"')
+print(f'"TOTAL {tag} TAGs COLLECTED: {len(tag_text_list)}"')
 df = pd.DataFrame(tag_text_list)
 df.to_csv(f'{title}.csv')
 print(f'file: ./{title}.csv')
